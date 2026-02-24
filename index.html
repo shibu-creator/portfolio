@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shibu Kumar G K | Architect & CMO</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#050505',
+                        lightBg: '#f8fafc',
+                        accent: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .dark body { background-color: #050505; color: #ffffff; }
+        .light body { background-color: #f8fafc; color: #0f172a; }
+
+        .glass {
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .dark .glass { background: rgba(15, 15, 15, 0.9); border-color: rgba(255,255,255,0.05); }
+        .light .glass { background: rgba(255, 255, 255, 0.7); border-color: rgba(0,0,0,0.05); }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* High-Response Proximity Bounce */
+        .executive-btn, .experience-card {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .executive-btn:hover, .experience-card:hover {
+            transform: scale(1.05) translateY(-20px);
+            box-shadow: 0 40px 80px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        /* Adjusted Skill Ticker - Smaller and Sleeker */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .skill-slider {
+            display: flex;
+            width: fit-content;
+            animation: scroll 35s linear infinite;
+        }
+
+        .skill-item {
+            font-size: 3.5rem; /* Reduced from 6rem */
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            padding: 0 3rem;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(59, 130, 246, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .skill-item:hover {
+            color: #3b82f6;
+            -webkit-text-stroke: 1px #3b82f6;
+            transform: scale(1.05);
+        }
+
+        .dark .skill-item { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25); }
+        .light .skill-item { -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15); }
+        
+        .dark .skill-item:hover { color: white; -webkit-text-stroke: 1px white; }
+        .light .skill-item:hover { color: black; -webkit-text-stroke: 1px black; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border: 1px solid rgba(125,125,125,0.2);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full z-50 glass border-b px-10 py-6 flex justify-between items-center">
+        <div class="text-xl font-black tracking-[0.3em] uppercase">
+            SHIBU<span class="text-blue-600">KUMAR G K</span>
+        </div>
+        
+        <div class="flex items-center gap-8">
+            <div class="hidden lg:flex gap-10">
+                <a href="#about" class="text-[10px] font-bold tracking-widest hover:text-blue-500 transition uppercase">About</a>
+                <a href="#experience" class="text-[10px] font-bold tracking-widest hover:text-blue-500 transition uppercase">Trajectory</a>
+                <a href="#contact" class="text-[10px] font-bold tracking-widest hover:text-blue-500 transition uppercase">Connect</a>
+            </div>
+            
+            <button onclick="toggleTheme()" class="p-3 rounded-full bg-blue-600 text-white hover:scale-110 transition-transform shadow-lg shadow-blue-500/30">
+                <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about" class="min-h-screen flex items-center px-10 pt-32 relative">
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal">
+                <h2 class="text-blue-600 font-bold text-xs tracking-[0.6em] uppercase mb-8">Engineering & Strategic Marketing</h2>
+                <h1 class="text-7xl lg:text-9xl font-extrabold leading-[0.85] tracking-tighter mb-12">
+                    ARCHITECT OF <br> <span class="gradient-text">SYSTEMS.</span>
+                </h1>
+                <p class="text-gray-500 dark:text-gray-400 text-2xl max-w-lg leading-relaxed mb-12">
+                    Software engineer driven by research, system design, and real-world execution.
+                    Bridging the gap between <span class="dark:text-white text-black font-bold">Backend Engineering</span> and <span class="dark:text-white text-black font-bold">Growth Strategy</span> at SparkLance Solutions.
+                </p>
+                <div class="grid grid-cols-2 gap-12 border-t border-gray-500/20 pt-12">
+                    <div>
+                        <p class="dark:text-white text-black font-black text-4xl">8.18</p>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Current CGPA</p>
+                    </div>
+                    <div>
+                        <p class="dark:text-white text-black font-black text-4xl">B.E.</p>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Computer Science</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal flex justify-center lg:justify-end">
+                <div class="profile-container rounded-sm glass group">
+                    <img src="C:\Users\LENOVO\OneDrive\Documents\portfolio\mi.jpeg" alt="Shibu Kumar G K" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" onerror="this.src='https://placehold.co/800x1200/111/fff?text=SHIBU';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="py-20 bg-gray-500/5 border-y border-gray-500/10 overflow-hidden">
+        <div class="skill-slider">
+            <div class="skill-item">Python</div>
+            <div class="skill-item">FastAPI</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">IBM Cloud</div>
+            <div class="skill-item">Marketing</div>
+            <div class="skill-item">Full Stack</div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">FastAPI</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">IBM Cloud</div>
+            <div class="skill-item">Marketing</div>
+            <div class="skill-item">Full Stack</div>
+        </div>
+    </div>
+
+    <section id="experience" class="max-w-7xl mx-auto px-10 py-48">
+        <div class="reveal mb-24">
+            <h2 class="text-blue-600 font-bold text-xs tracking-[0.5em] uppercase mb-4">Trajectory</h2>
+            <h3 class="text-6xl font-black tracking-tighter">Strategic Roles.</h3>
+        </div>
+        
+        <div class="space-y-16">
+            <div class="reveal experience-card glass p-16 rounded-3xl border-l-8 border-blue-600 group">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <div class="col-span-1">
+                        <p class="text-blue-500 font-bold text-sm tracking-widest uppercase">Executive Office</p>
+                        <h4 class="text-3xl font-black mt-4">SparkLance Solutions</h4>
+                    </div>
+                    <div class="col-span-2">
+                        <h5 class="text-2xl dark:text-white text-black font-black mb-6 uppercase tracking-wider">Chief Marketing Officer</h5>
+                        <p class="text-gray-500 dark:text-gray-400 text-xl leading-relaxed">
+                            Pioneering digital ecosystems where engineering meets market dominance. Responsible for scaling brand identity and high-level marketing architecture.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal experience-card glass p-16 rounded-3xl group">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <div class="col-span-1 text-gray-500">
+                        <p class="font-bold text-sm tracking-widest uppercase">Dec 2025 - Jan 2026</p>
+                        <h4 class="text-3xl font-black mt-4">SRM Technologies</h4>
+                    </div>
+                    <div class="col-span-2">
+                        <h5 class="text-2xl dark:text-white text-black font-black mb-6 uppercase tracking-wider">Backend Development Intern</h5>
+                        <p class="text-gray-500 dark:text-gray-400 text-xl leading-relaxed">
+                            Architected backend logic and API services for enterprise applications within an MNC environment. Gained deep mastery in production-grade software workflows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="max-w-7xl mx-auto px-10 py-48">
+        <div class="reveal text-center mb-24">
+            <h3 class="text-6xl font-black tracking-tighter">Global Contact.</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="mailto:shibukumargk@gmail.com" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
+                    <i data-lucide="mail" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-black mb-2">Email</h3>
+                <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Official</p>
+            </a>
+
+            <a href="https://www.linkedin.com/in/shibu-kumar-g-k-1066b2355" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 100ms;">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
+                    <i data-lucide="linkedin" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-black mb-2">LinkedIn</h3>
+                <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Corporate</p>
+            </a>
+
+            <a href="https://github.com/shibu-creator" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 200ms;">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
+                    <i data-lucide="github" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-black mb-2">GitHub</h3>
+                <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Developer</p>
+            </a>
+
+            <a href="https://www.instagram.com/im.___.shifu" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 300ms;">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
+                    <i data-lucide="instagram" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-black mb-2">Instagram</h3>
+                <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Personal</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="px-10 py-24 border-t border-gray-500/10 text-center">
+        <p class="text-[10px] font-black tracking-[1.5em] text-gray-500 uppercase">
+            &copy; 2026 SHIBU KUMAR G K
+        </p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.replace('dark', 'light');
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                html.classList.replace('light', 'dark');
+                icon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
