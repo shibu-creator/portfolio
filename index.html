@@ -28,6 +28,7 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
         }
 
         .dark body { background-color: #050505; color: #ffffff; }
@@ -36,6 +37,7 @@
         .glass {
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
         }
         .dark .glass { background: rgba(15, 15, 15, 0.9); border-color: rgba(255,255,255,0.05); }
         .light .glass { background: rgba(255, 255, 255, 0.7); border-color: rgba(0,0,0,0.05); }
@@ -46,18 +48,32 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* High-Response Proximity Bounce */
-        .executive-btn, .experience-card {
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        /* EXPERIENCE CARD GLOW */
+        .experience-card {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
         }
 
-        .executive-btn:hover, .experience-card:hover {
-            transform: scale(1.05) translateY(-20px);
+        .experience-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #3b82f6;
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.15);
+        }
+        .light .experience-card:hover { background: rgba(0, 0, 0, 0.02); }
+        .dark .experience-card:hover { background: rgba(59, 130, 246, 0.1); }
+
+        /* SOCIAL BUTTON JUMP */
+        .executive-btn {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .executive-btn:hover {
+            transform: translateY(-20px) scale(1.05);
             box-shadow: 0 40px 80px rgba(59, 130, 246, 0.2);
             border-color: #3b82f6;
         }
 
-        /* Adjusted Skill Ticker - Smaller and Sleeker */
+        /* SKILL TICKER - Smaller with Light Mode Black Glow */
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -66,31 +82,34 @@
         .skill-slider {
             display: flex;
             width: fit-content;
-            animation: scroll 35s linear infinite;
+            animation: scroll 30s linear infinite;
         }
 
         .skill-item {
-            font-size: 3.5rem; /* Reduced from 6rem */
+            font-size: 3rem; 
             font-weight: 800;
-            letter-spacing: -0.01em;
             padding: 0 3rem;
             text-transform: uppercase;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(59, 130, 246, 0.4);
-            transition: all 0.4s ease;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
-        .skill-item:hover {
-            color: #3b82f6;
-            -webkit-text-stroke: 1px #3b82f6;
-            transform: scale(1.05);
+        /* Dark Mode Skill Hover (White/Blue Glow) */
+        .dark .skill-item:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: white;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.7), 0 0 50px rgba(59, 130, 246, 0.3);
         }
 
-        .dark .skill-item { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25); }
-        .light .skill-item { -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15); }
-        
-        .dark .skill-item:hover { color: white; -webkit-text-stroke: 1px white; }
-        .light .skill-item:hover { color: black; -webkit-text-stroke: 1px black; }
+        /* Light Mode Skill Hover (Black Glow) */
+        .light .skill-item:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: black;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
 
         .reveal {
             opacity: 0;
@@ -104,12 +123,16 @@
         }
 
         .profile-container {
-            position: relative;
             width: 100%;
-            max-width: 480px;
+            max-width: 450px;
             aspect-ratio: 3/4;
             overflow: hidden;
             border: 1px solid rgba(125,125,125,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .skill-item { font-size: 1.8rem; padding: 0 1.5rem; }
+            .hero-title { font-size: 3.5rem !important; }
         }
     </style>
 </head>
@@ -127,7 +150,7 @@
                 <a href="#contact" class="text-[10px] font-bold tracking-widest hover:text-blue-500 transition uppercase">Connect</a>
             </div>
             
-            <button onclick="toggleTheme()" class="p-3 rounded-full bg-blue-600 text-white hover:scale-110 transition-transform shadow-lg shadow-blue-500/30">
+            <button onclick="toggleTheme()" class="p-3 rounded-full bg-blue-600 text-white hover:scale-110 transition-transform">
                 <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
             </button>
         </div>
@@ -139,15 +162,13 @@
         <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-24 items-center">
             <div class="reveal">
                 <h2 class="text-blue-600 font-bold text-xs tracking-[0.6em] uppercase mb-8">Engineering & Strategic Marketing</h2>
-                <h1 class="text-7xl lg:text-9xl font-extrabold leading-[0.85] tracking-tighter mb-12">
+                <h1 class="hero-title text-7xl lg:text-9xl font-extrabold leading-[0.85] tracking-tighter mb-12">
                     ARCHITECT OF <br> <span class="gradient-text">SYSTEMS.</span>
                 </h1>
                 <p class="text-gray-500 dark:text-gray-400 text-2xl max-w-lg leading-relaxed mb-12">
-                    Software engineer driven by research, system design, and real-world execution.
                     Bridging the gap between <span class="dark:text-white text-black font-bold">Backend Engineering</span> and <span class="dark:text-white text-black font-bold">Growth Strategy</span> at SparkLance Solutions.
                 </p>
-                <div class="grid grid-cols-2 gap-12 border-t border-gray-500/20 pt-12">
-                   
+                <div class="flex gap-12 border-t border-gray-500/20 pt-12">
                     <div>
                         <p class="dark:text-white text-black font-black text-4xl">B.E.</p>
                         <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Computer Science</p>
@@ -187,7 +208,7 @@
         </div>
         
         <div class="space-y-16">
-            <div class="reveal experience-card glass p-16 rounded-3xl border-l-8 border-blue-600 group">
+            <div class="reveal experience-card glass p-12 lg:p-16 rounded-3xl border-l-8 border-blue-600">
                 <div class="grid lg:grid-cols-3 gap-12">
                     <div class="col-span-1">
                         <p class="text-blue-500 font-bold text-sm tracking-widest uppercase">Executive Office</p>
@@ -202,16 +223,16 @@
                 </div>
             </div>
 
-            <div class="reveal experience-card glass p-16 rounded-3xl group">
+            <div class="reveal experience-card glass p-12 lg:p-16 rounded-3xl border-l-8 border-transparent">
                 <div class="grid lg:grid-cols-3 gap-12">
                     <div class="col-span-1 text-gray-500">
                         <p class="font-bold text-sm tracking-widest uppercase">Dec 2025 - Jan 2026</p>
                         <h4 class="text-3xl font-black mt-4">SRM Technologies</h4>
                     </div>
                     <div class="col-span-2">
-                        <h5 class="text-2xl dark:text-white text-black font-black mb-6 uppercase tracking-wider">Backend Development Intern</h5>
+                        <h5 class="text-2xl dark:text-white text-black font-black mb-6 uppercase tracking-wider">Backend Intern</h5>
                         <p class="text-gray-500 dark:text-gray-400 text-xl leading-relaxed">
-                            Architected backend logic and API services for enterprise applications within an MNC environment. Gained deep mastery in production-grade software workflows.
+                            Architected backend logic and API services for enterprise applications. Gained deep mastery in production-grade software workflows.
                         </p>
                     </div>
                 </div>
@@ -233,7 +254,7 @@
                 <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Official</p>
             </a>
 
-            <a href="https://www.linkedin.com/in/shibu-kumar-g-k-1066b2355" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 100ms;">
+            <a href="https://www.linkedin.com/in/shibu-kumar-g-k-1066b2355" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group">
                 <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
                     <i data-lucide="linkedin" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
                 </div>
@@ -241,7 +262,7 @@
                 <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Corporate</p>
             </a>
 
-            <a href="https://github.com/shibu-creator" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 200ms;">
+            <a href="https://github.com/shibu-creator" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group">
                 <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
                     <i data-lucide="github" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
                 </div>
@@ -249,7 +270,7 @@
                 <p class="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Developer</p>
             </a>
 
-            <a href="https://www.instagram.com/im.___.shifu" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group" style="transition-delay: 300ms;">
+            <a href="https://www.instagram.com/im.___.shifu" target="_blank" class="executive-btn reveal glass p-12 rounded-3xl flex flex-col items-center text-center group">
                 <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-all">
                     <i data-lucide="instagram" class="w-8 h-8 text-blue-500 group-hover:text-white"></i>
                 </div>
@@ -295,6 +316,4 @@
         reveal();
     </script>
 </body>
-
 </html>
-
